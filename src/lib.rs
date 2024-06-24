@@ -5,7 +5,7 @@
 //! when sending a message through a channel.
 
 #[cfg(feature = "tokio")]
-use tokio::task::JoinHandle;
+use tokio::task::{AbortHandle, JoinHandle};
 
 /// Provides [`DropResult::drop_result`] for dropping [`Result`] values.
 pub trait DropResult {
@@ -40,4 +40,17 @@ pub trait DropJoinHandle {
 #[cfg(feature = "tokio")]
 impl<T> DropJoinHandle for JoinHandle<T> {
     fn drop_join_handle(self) {}
+}
+
+/// Provides [`DropAbortHandle::drop_abort_handle`] for dropping [`AbortHandle`] values.
+#[cfg(feature = "tokio")]
+pub trait DropAbortHandle {
+    /// Drop this [`AbortHandle`].
+    /// This method prevents dropping a value that is not a [`AbortHandle`].
+    fn drop_abort_handle(self);
+}
+
+#[cfg(feature = "tokio")]
+impl DropAbortHandle for AbortHandle {
+    fn drop_abort_handle(self) {}
 }

@@ -8,6 +8,7 @@ TYPES: Final = [
     ("Result", "<T, E>", ""),
     ("bool", "", ""),
     ("JoinHandle", "<T>", "tokio"),
+    ("AbortHandle", "", "tokio"),
 ]
 HEADER: Final = f"""// {NOTICE}
 //! Traits to provide a method for dropping values of specific types,
@@ -17,7 +18,7 @@ HEADER: Final = f"""// {NOTICE}
 """
 USES: Final = """
 #[cfg(feature = "tokio")]
-use tokio::task::JoinHandle;
+use tokio::task::{AbortHandle, JoinHandle};
 """
 
 
