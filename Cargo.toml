@@ -1,0 +1,13 @@
+[package]
+name = "drop_this"
+description = """Convenience traits to drop values of "this" specific type."""
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/SichangHe/drop_this.rs"
+version = "0.0.0"
+
+[dependencies]
+tokio = { version = "1", features = ["rt"], optional = true }
+
+[features]
+tokio = ["dep:tokio"]
